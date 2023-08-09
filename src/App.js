@@ -56,14 +56,10 @@ const Friend = ({ friend }) => {
       )}
       {balance > 0 && (
         <p className="green">
-          You owe {name} {Math.abs(balance)}$
+          {name} owes you {Math.abs(balance)}$
         </p>
       )}
-      {balance === 0 && (
-        <p className="grey">
-          You owe {name} {Math.abs(balance)}$
-        </p>
-      )}
+      {balance === 0 && <p className="grey">You are even</p>}
     </li>
   );
 };
