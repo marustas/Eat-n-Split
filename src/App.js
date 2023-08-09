@@ -33,15 +33,25 @@ const App = () => {
 };
 
 const FriendsList = () => {
+  const friends = initialFriends;
   return (
     <ul>
-      <Friend />
+      {friends.map((friend) => (
+        <Friend friend={friend} />
+      ))}
     </ul>
   );
 };
 
-const Friend = () => {
-  return <li></li>;
+const Friend = ({ friend }) => {
+  const { name, image, balance } = friend;
+  return (
+    <li>
+      <img alt="friend" src={image}></img>
+      <p>{name}</p>
+      <p>{balance}</p>
+    </li>
+  );
 };
 
 export default App;
