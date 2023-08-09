@@ -37,7 +37,7 @@ const FriendsList = () => {
   return (
     <ul>
       {friends.map((friend) => (
-        <Friend friend={friend} />
+        <Friend friend={friend} key={friend.id} />
       ))}
     </ul>
   );
@@ -47,9 +47,23 @@ const Friend = ({ friend }) => {
   const { name, image, balance } = friend;
   return (
     <li>
-      <img alt="friend" src={image}></img>
-      <p>{name}</p>
-      <p>{balance}</p>
+      <img alt={name} src={image}></img>
+      <h3>{name}</h3>
+      {balance < 0 && (
+        <p className="red">
+          You owe {name} {Math.abs(balance)}$
+        </p>
+      )}
+      {balance > 0 && (
+        <p className="green">
+          You owe {name} {Math.abs(balance)}$
+        </p>
+      )}
+      {balance === 0 && (
+        <p className="grey">
+          You owe {name} {Math.abs(balance)}$
+        </p>
+      )}
     </li>
   );
 };
