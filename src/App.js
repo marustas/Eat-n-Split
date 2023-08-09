@@ -1,3 +1,6 @@
+import "./index.css";
+import React from "react";
+
 const initialFriends = [
   {
     id: 118836,
@@ -18,3 +21,27 @@ const initialFriends = [
     balance: 0,
   },
 ];
+
+const App = () => {
+  return (
+    <div className="app">
+      <div className="sidebar">
+        <FriendsList />
+      </div>
+    </div>
+  );
+};
+
+const FriendsList = () => {
+  return (
+    <ul>
+      <Friend />
+    </ul>
+  );
+};
+
+const Friend = () => {
+  return <li></li>;
+};
+
+export default App;
