@@ -1,5 +1,5 @@
 import "./index.css";
-import React from "react";
+import React, { useState } from "react";
 
 const initialFriends = [
   {
@@ -23,12 +23,16 @@ const initialFriends = [
 ];
 
 const App = () => {
+  const [showAddFriend, setShowAddFriend] = useState(false);
+  const handleShowAddFriend = () => {
+    setShowAddFriend(!showAddFriend);
+  };
   return (
     <div className="app">
       <div className="sidebar">
         <FriendsList />
-        <FormAddFriend />
-        <Button>Add friend</Button>
+        {showAddFriend && <FormAddFriend />}
+        <Button onSetShowAddFriend={handleShowAddFriend}>Add friend</Button>
       </div>
       <FormSplitBill />
     </div>
@@ -102,7 +106,11 @@ const FormSplitBill = () => {
     </form>
   );
 };
-const Button = ({ children }) => {
-  return <button className="button">{children}</button>;
+const Button = ({ children, onSetShowAddFriend }) => {
+  return (
+    <button onClick={onSetShowAddFriend} className="button">
+      {children}
+    </button>
+  );
 };
 export default App;
