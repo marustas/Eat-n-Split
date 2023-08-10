@@ -24,15 +24,21 @@ const initialFriends = [
 
 const App = () => {
   const [showAddFriend, setShowAddFriend] = useState(false);
+  const [friends, setFriends] = useState(initialFriends);
+
   const handleShowAddFriend = () => {
     setShowAddFriend((show) => !show);
+  };
+
+  const handleAddFriend = (friend) => {
+    setFriends((friends) => [...friends, friend]);
   };
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendsList />
-        {showAddFriend && <FormAddFriend />}
-        <Button onSetShowAddFriend={handleShowAddFriend}>
+        <FriendsList friends={friends} />
+        {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend} />}
+        <Button onClick={handleShowAddFriend}>
           {!showAddFriend ? "Add friend" : "Close"}
         </Button>
       </div>
@@ -41,8 +47,7 @@ const App = () => {
   );
 };
 
-const FriendsList = () => {
-  const friends = initialFriends;
+const FriendsList = ({ friends }) => {
   return (
     <ul>
       {friends.map((friend) => (
@@ -74,18 +79,26 @@ const Friend = ({ friend }) => {
   );
 };
 
-const FormAddFriend = () => {
+const FormAddFriend = ({ onAddFriend }) => {
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState("https://i.pravatar.cc/48");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!name || !image) return;
+
+    const id = crypto.randomUUID();
     const newFriend = {
-      name: name,
+      name,
       balance: 0,
-      image: image,
-      id: crypto.randomUUID,
+      image: `${image}?=${id}`,
+      id,
     };
+
+    onAddFriend(newFriend);
+    setName("");
+    setImage("https://i.pravatar.cc/48");
   };
   return (
     <form className="form-add-friend" onSubmit={handleSubmit}>
@@ -125,9 +138,9 @@ const FormSplitBill = () => {
     </form>
   );
 };
-const Button = ({ children, onSetShowAddFriend }) => {
+const Button = ({ children, onClick }) => {
   return (
-    <button onClick={onSetShowAddFriend} className="button">
+    <button onClick={onClick} className="button">
       {children}
     </button>
   );
