@@ -64,4 +64,12 @@ const Friend = ({ friend }) => {
   );
 };
 
+const FormAddFriend = () => {
+  return (
+    <form className="form">
+      <label>Friend name</label>
+      <input type="text" />
+    </form>
+  );
+};
 export default App;
