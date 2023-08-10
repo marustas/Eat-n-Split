@@ -25,7 +25,7 @@ const initialFriends = [
 const App = () => {
   const [showAddFriend, setShowAddFriend] = useState(false);
   const handleShowAddFriend = () => {
-    setShowAddFriend(!showAddFriend);
+    setShowAddFriend((show) => !show);
   };
   return (
     <div className="app">
