@@ -77,8 +77,18 @@ const Friend = ({ friend }) => {
 const FormAddFriend = () => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newFriend = {
+      name: name,
+      balance: 0,
+      image: image,
+      id: crypto.randomUUID,
+    };
+  };
   return (
-    <form className="form-add-friend">
+    <form className="form-add-friend" onSubmit={handleSubmit}>
       <label>Friend name</label>
       <input
         type="text"
@@ -91,7 +101,6 @@ const FormAddFriend = () => {
         value={image}
         onChange={(e) => setImage(e.target.value)}
       />
-
       <Button>Add </Button>
     </form>
   );
@@ -101,7 +110,6 @@ const FormSplitBill = () => {
   return (
     <form className="form-split-bill">
       <h2>Split a bill with </h2>
-
       <label>💸 Bill balue</label>
       <input type="text" />
       <label>Your expense</label>
@@ -113,7 +121,6 @@ const FormSplitBill = () => {
         <option value="you">You</option>
         <option value="friend">Your friend</option>
       </select>
-
       <Button>Split the bill </Button>
     </form>
   );
