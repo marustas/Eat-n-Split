@@ -60,6 +60,7 @@ const Friend = ({ friend }) => {
         </p>
       )}
       {balance === 0 && <p className="grey">You are even</p>}
+      <Button>Select</Button>
     </li>
   );
 };
@@ -69,7 +70,15 @@ const FormAddFriend = () => {
     <form className="form">
       <label>Friend name</label>
       <input type="text" />
+
+      <label>Image URL</label>
+      <input type="text" />
+      <Button>Add </Button>
     </form>
   );
+};
+
+const Button = ({ children }) => {
+  return <button className="button">{children}</button>;
 };
 export default App;
