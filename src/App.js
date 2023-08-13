@@ -49,7 +49,7 @@ const App = () => {
           {!showAddFriend ? "Add friend" : "Close"}
         </Button>
       </div>
-      {selectedFriend && <FormSplitBill />}
+      {selectedFriend && <FormSplitBill selectedFriend={selectedFriend} />}
     </div>
   );
 };
@@ -126,22 +126,22 @@ const FormAddFriend = ({ onAddFriend }) => {
   );
 };
 
-const FormSplitBill = () => {
+const FormSplitBill = ({ selectedFriend }) => {
   return (
     <form className="form-split-bill">
       <h2>Split a bill with </h2>
       <label>💸 Bill balue</label>
       <input type="text" />
-      <label>Your expense</label>
+      <label>🙎‍♂️Your expense</label>
       <input type="text" />
-      <label>Your friend's expense</label>
+      <label>👨‍👦{selectedFriend.name}'s expense</label>
       <input type="text" disabled />
       <label>🤑 Who's paying the bill?</label>
       <select>
         <option value="you">You</option>
-        <option value="friend">Your friend</option>
+        <option value="friend">{selectedFriend.name}</option>
       </select>
-      <Button>Split the bill </Button>
+      <Button>Split the bill</Button>
     </form>
   );
 };
