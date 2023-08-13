@@ -41,7 +41,11 @@ const App = () => {
   return (
     <div className="app">
       <div className="sidebar">
-        <FriendsList friends={friends} onSelection={handleSelectFriend} />
+        <FriendsList
+          friends={friends}
+          selectedFriend={selectedFriend}
+          onSelection={handleSelectFriend}
+        />
 
         {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend} />}
 
@@ -54,20 +58,27 @@ const App = () => {
   );
 };
 
-const FriendsList = ({ friends, onSelection }) => {
+const FriendsList = ({ friends, onSelection, selectedFriend }) => {
   return (
     <ul>
       {friends.map((friend) => (
-        <Friend onSelection={onSelection} friend={friend} key={friend.id} />
+        <Friend
+          selectedFriend={selectedFriend}
+          onSelection={onSelection}
+          friend={friend}
+          key={friend.id}
+        />
       ))}
     </ul>
   );
 };
 
-const Friend = ({ friend, onSelection }) => {
+const Friend = ({ friend, onSelection, selectedFriend }) => {
+  const isSelected = selectedFriend.id === friend.id;
+
   const { name, image, balance } = friend;
   return (
-    <li>
+    <li className={isSelected ? "selected" : ""}>
       <img alt={name} src={image}></img>
       <h3>{name}</h3>
       {balance < 0 && (
