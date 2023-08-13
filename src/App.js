@@ -37,8 +37,9 @@ const App = () => {
   };
   const handleSelectFriend = (friend) => {
     setSelectedFriend((selectedFriend) =>
-      selectedFriend.id === friend.id ? null : friend
+      selectedFriend?.id === friend.id ? null : friend
     );
+    setShowAddFriend(false);
   };
   return (
     <div className="app">
