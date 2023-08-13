@@ -76,7 +76,7 @@ const FriendsList = ({ friends, onSelection, selectedFriend }) => {
 };
 
 const Friend = ({ friend, onSelection, selectedFriend }) => {
-  const isSelected = selectedFriend.id === friend.id;
+  const isSelected = selectedFriend?.id === friend.id;
 
   const { name, image, balance } = friend;
   return (
