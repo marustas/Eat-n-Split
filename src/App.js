@@ -162,7 +162,7 @@ const FormSplitBill = ({ selectedFriend }) => {
         onChange={(e) => setPaidByUser(e.target.value)}
       />
       <label>👨‍👦{selectedFriend.name}'s expense</label>
-      <input type="text" disabled />
+      <input type="text" disabled value={bill - paidByUser} />
       <label>🤑 Who's paying the bill?</label>
       <select
         value={whoIsPaying}
