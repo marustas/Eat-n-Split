@@ -42,7 +42,15 @@ const App = () => {
     setShowAddFriend(false);
   };
 
-  const handleSplitBill = (value) => {};
+  const handleSplitBill = (value) => {
+    setFriends((friends) =>
+      friends.map((friend) =>
+        friend.id === selectedFriend.id
+          ? { ...friend, balance: friend.balance + value }
+          : friend
+      )
+    );
+  };
   return (
     <div className="app">
       <div className="sidebar">
